@@ -9,7 +9,9 @@ import Plane from "../models/Plane"
 //packages needed - three/fiber and three/drei
 const Home = () => {
 
-        const [isRotating, setIsRotating] = useState(false);
+    const [isRotating, setIsRotating] = useState(false);
+
+    
     const adjustIslandForScreenSize =()=>{
         let screenScale = null
         let screenPosition = [0, -6.5, -43]
