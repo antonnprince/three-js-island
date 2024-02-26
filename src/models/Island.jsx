@@ -40,6 +40,7 @@ const Island=({isRotating, setIsRotating, ...props})=> {
 
     // Store the current clientX position for reference
     lastX.current = clientX;
+   
   };
 
   // Handle pointer (mouse or touch) up event
@@ -47,10 +48,11 @@ const Island=({isRotating, setIsRotating, ...props})=> {
     event.stopPropagation();
     event.preventDefault();
     setIsRotating(false);
+  
   };
 
   // Handle pointer (mouse or touch) move event
-     const handlePointerMove = (event) => {
+  const handlePointerMove = (event) => {
     event.stopPropagation();
     event.preventDefault();
     if (isRotating) {
@@ -63,15 +65,19 @@ const Island=({isRotating, setIsRotating, ...props})=> {
 
       // Update the island's rotation based on the mouse/touch movement
       islandRef.current.rotation.y += delta * 0.01 * Math.PI;
+      islandRef.current.rotation.x += delta * 0.01 * Math.PI;
 
       // Update the reference for the last clientX position
       lastX.current = clientX;
 
       // Update the rotation speed
       rotationSpeed.current = delta * 0.01 * Math.PI;
+
+      console.log("moving")
     }
   };
 
+  // Handle keydown events
   // Handle keydown events
   const handleKeyDown = (event) => {
     if (event.key === "ArrowLeft") {
@@ -111,7 +117,7 @@ const Island=({isRotating, setIsRotating, ...props})=> {
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleKeyUp);
     };
-  }, [gl, handlePointerDown, handlePointerUp, handlePointerMove]);
+  }, [gl, handlePointerDown, handlePointerUp, handlePointerMove, viewport]);
 
   // This function is called on each frame update
   useFrame(() => {
