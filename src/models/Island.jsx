@@ -16,12 +16,7 @@ import { useFrame, useThree } from "@react-three/fiber";
 
 import islandScene from "../assets/3d/island.glb";
 
-export function Island({
- 
-  setIsRotating,
-
-  ...props
-}) {
+const Island=({isRotating, setIsRotating, ...props})=> {
   const islandRef = useRef();
   // Get access to the Three.js renderer and viewport
   const { gl, viewport } = useThree();
@@ -55,7 +50,7 @@ export function Island({
   };
 
   // Handle pointer (mouse or touch) move event
-  const handlePointerMove = (event) => {
+     const handlePointerMove = (event) => {
     event.stopPropagation();
     event.preventDefault();
     if (isRotating) {
@@ -208,3 +203,4 @@ export function Island({
     </a.group>
   );
 }
+export default Island
